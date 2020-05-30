@@ -1,30 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from 'react-router-dom';
+
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min.js';
+
+import Public from './tela/public/index';
 
 function App(prop){
-    console.log(prop.loading);
-    prop.setLoading();
 
-    return(
-        <></>
-    );
+    const cookie = document.cookie.split("; ");
+
+    if(!cookie.some(rx => /sessionId/g.test(rx))){
+        return(
+            <>
+                <Public />
+            </>
+        );
+    }else if(prop.login === false){
+        prop.setLogin();
+    }
+
+    if(prop.login === false){
+        return(
+            <>
+                <Public />
+            </>
+        );
+    }
 }
 
 function mapStateToProps(state){
     return {
-        loading: state.screen.loading
+        loading: state.screen.loading,
+        login: state.user.login
     };
 }
 
 function mapDispatchToProps(dispatch){
     return {
-        setLoading: () => dispatch({type: "setLoading"})
+        setLoading: () => dispatch({type: "setLoading"}),
+        setLogin: () => dispatch({type: "setLogin"})
     };
 }
 
