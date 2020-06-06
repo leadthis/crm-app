@@ -1,34 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
 
 import Public from './tela/public/index';
+import Private from './tela/private/index';
 
-function App(prop){
+import {verifyLogin} from './redux/user/actions';
 
-    const cookie = document.cookie.split("; ");
+function App(props){
 
-    console.log(prop.login);
-
-    if(!cookie.some(rx => /sessionId/g.test(rx))){
+    useEffect(() => {props.verifyLogin()}, []);
+    
+    if(props.login){
         return(
             <>
-                <Public />
-            </>
-        );
-    }else if(prop.login === false){
-        prop.setLogin();
-    }
-
-    if(prop.login === false){
-        return(
-            <>
-                <Public />
+                <Private />
             </>
         );
     }
+
+    return(
+        <>
+            <Public />
+        </>
+    );
+
 }
 
 function mapStateToProps(state){
@@ -41,7 +39,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return {
         setLoading: () => dispatch({type: "setLoading"}),
-        setLogin: () => dispatch({type: "setLogin"})
+        verifyLogin: () => dispatch(verifyLogin())
     };
 }
 

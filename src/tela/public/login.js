@@ -7,18 +7,20 @@ function login(props) {
     const handleLogin = async (evt) => {
         evt.preventDefault();
 
-        let email = document.getElementById('email');
-        let senha = document.getElementById('password');
+        const email = document.getElementById('email');
+        const senha = document.getElementById('password');
 
-        let request = await props.doLogin(email.value, senha.value);        
-    };
+        const request = await props.doLogin(email.value, senha.value);
+        
+        document.cookie = "sessionId=" + request.data.sid + "; path=/";
+    }
 
     return (
         <div className="container">
             <div className="row m-b-none">
                 <div className="col s2"></div>
                 <div className="col s8">
-                    <h2 className="center-align grey-text darken-4">CRM</h2>
+                    <h2 className="center-align grey-text darken-4" style={{textTransform: "uppercase"}}>CRM - Login</h2>
                     <form method="post" onSubmit={handleLogin}>
                         <div className="input-field">
                             <input className="validate" type="email" name="email" id="email" />
@@ -30,7 +32,7 @@ function login(props) {
                         </div>
                         <div style={{display: "flex", justifyContent: "space-between"}}>
                             <button type="button" className="waves-effect waves-light btn indigo" onClick={() => {props.history.push('/cadastrar')}}>Cadastrar</button>
-                            <button type="submit" className="waves-effect waves-light btn indigo">Login</button>
+                            <button type="submit" className="waves-effect waves-light btn green">Login</button>
                         </div>
                     </form>
                 </div>
@@ -48,7 +50,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        doLogin: (email, senha) => dispatch(doLogin(email, senha))
+        doLogin: async (email, senha) => dispatch(await doLogin(email, senha))
     };
 }
 

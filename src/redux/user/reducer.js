@@ -1,11 +1,10 @@
 const INITIAL_STATE = {login: false};
 
 export default function reducer(state = INITIAL_STATE, action){
+    console.log(action);
     switch(action.type){
-        case "setLogin":
-            return { ...state, login: true};
-        case "setLogout":
-            return { ...state, login: false};
+        case "loggedIn":
+            return {...state, login: action.data};
         default:
             return state;
     }

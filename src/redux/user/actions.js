@@ -5,11 +5,34 @@ export const doLogin = (email, senha) => {
         let response;
         try{
             response = (await api.post('/usuario/login', {email, senha})).data;
-            dispatch({type: 'setLogin'});
+            dispatch({type: 'loggedIn', data: true});
         }catch(e){
+            console.log(e);
             response = e.response.data;
         }
 
         return response;
     };
+}
+
+export const doCadastro = (nome, email, senha) => {
+    return async () => {
+        let response;
+        try{
+            response = (await api.post('/usuario', {nome, email, senha})).data;
+        }catch(e){
+            response = e.response.data;
+        }
+
+        return response;
+    }
+}
+
+export const verifyLogin = () => {
+    return async (dispatch) => {
+        const cookie = document.cookie.split("; ");
+
+        //Verifica se tem o cookie sessionId
+        dispatch({type: "loggedIn", data: !cookie.some(rx => /sessionId/g.test(rx))});
+    }
 }

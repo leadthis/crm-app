@@ -9,6 +9,7 @@ import Header from './../patterns/header';
 
 import Home from './home';
 import Login from './login';
+import Cadastrar from './cadastrar';
 
 function index(){
     return(
@@ -17,6 +18,7 @@ function index(){
             <Switch>
                 <Route path="/" exact component={Home}/>
                 <Route path="/login" component={Login}/>
+                <Route path="/cadastrar" component={Cadastrar}/>
             </Switch>
         </BrowserRouter>
     );

@@ -12,6 +12,9 @@ function header(){
                 <ul className="right hide-on-med-and-down">
                     <li><LinkWrapper to="/login">Login</LinkWrapper></li>
                 </ul>
+                <ul className="right hide-on-med-and-down">
+                    <li><LinkWrapper to="/cadastrar">Cadastrar</LinkWrapper></li>
+                </ul>
             </div>
         </nav>
     );
