@@ -10,6 +10,8 @@ function App(prop){
 
     const cookie = document.cookie.split("; ");
 
+    console.log(prop.login);
+
     if(!cookie.some(rx => /sessionId/g.test(rx))){
         return(
             <>

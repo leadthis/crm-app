@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import LinkWrapper from "./../patterns/linkWrapper";
 import {doLogin} from './../../redux/user/actions';
 
 function login(props) {
@@ -11,9 +10,7 @@ function login(props) {
         let email = document.getElementById('email');
         let senha = document.getElementById('password');
 
-        let request = await props.doLogin(email.value, senha.value);
-        console.log(request);
-        
+        let request = await props.doLogin(email.value, senha.value);        
     };
 
     return (
@@ -31,13 +28,11 @@ function login(props) {
                             <input className="validate" type="password" name="password" id="password" />
                             <label htmlFor="password">Entre com sua senha</label>
                         </div>
-                        <div style={{display: "flex", justifyContent: "flex-end"}}>
+                        <div style={{display: "flex", justifyContent: "space-between"}}>
+                            <button type="button" className="waves-effect waves-light btn indigo" onClick={() => {props.history.push('/cadastrar')}}>Cadastrar</button>
                             <button type="submit" className="waves-effect waves-light btn indigo">Login</button>
                         </div>
                     </form>
-                    <div style={{ marginTop: 2 + 'rem' }}>
-                        <LinkWrapper className="grey-text lighten-4" to="/" activeStyle={{ fontWeight: "light" }}>Esqueceu sua senha?</LinkWrapper>
-                    </div>
                 </div>
                 <div className="col s2"></div>
             </div>
