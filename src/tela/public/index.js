@@ -1,4 +1,7 @@
 import React from 'react';
+
+import {connect} from 'react-redux';
+
 import {
     BrowserRouter,
     Switch,
@@ -11,7 +14,7 @@ import Home from './home';
 import Login from './login';
 import Cadastrar from './cadastrar';
 
-function index(){
+function Index(props){
     return(
         <BrowserRouter>
             <Header />
@@ -24,4 +27,12 @@ function index(){
     );
 }
 
-export default index;
+function mapStateToProps(state){
+    return{}
+}
+
+function mapDispatchToProps(dispatch){
+    return{}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

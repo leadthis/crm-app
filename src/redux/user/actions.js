@@ -1,17 +1,27 @@
 const axios = require('axios').default;
 const api = axios.create({baseURL: "http://crmapi.leadthis.com.br"});
+
+export const setLoggedIn = (dispatch, sid) => {
+    dispatch({type: 'loggedIn', data: true});
+    
+    document.cookie = "sessionId=" + sid + "; path=/";
+}
+
 export const doLogin = (email, senha) => {
     return async (dispatch) =>{
-        let response;
         try{
-            response = (await api.post('/usuario/login', {email, senha})).data;
-            dispatch({type: 'loggedIn', data: true});
-        }catch(e){
-            console.log(e);
-            response = e.response.data;
-        }
+            const response = (await api.post('/usuario/login', {email, senha})).data;
+            console.log(response);
+            if(response.status === 1){
+                setLoggedIn(dispatch, response.sid);
 
-        return response;
+                console.log("Foi");
+            }
+            console.log("Olá");
+            return response;
+        }catch(e){
+            return e.response.data;
+        }
     };
 }
 

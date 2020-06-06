@@ -10,8 +10,8 @@ import Private from './tela/private/index';
 import {verifyLogin} from './redux/user/actions';
 
 function App(props){
-
-    useEffect(() => {props.verifyLogin()}, []);
+    
+    useEffect(() => {props.verifyLogin(); console.log("APP CHAMDO, login é:" + props.login)}, []);
     
     if(props.login){
         return(

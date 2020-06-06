@@ -1,4 +1,7 @@
 import React from 'react';
+
+import {connect} from 'react-redux';
+
 import {
     BrowserRouter,
     Switch,
@@ -12,9 +15,18 @@ const Index = (props) => {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Home}/>
+                <Route path="/login" exact component={Home}/>
             </Switch>
         </BrowserRouter>
     );
 }
 
-export default Index;
+function mapStateToProps(state){
+    return{}
+}
+
+function mapDispatchToProps(dispatch){
+    return{}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

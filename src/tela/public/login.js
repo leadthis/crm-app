@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
 
 import {doLogin} from './../../redux/user/actions';
@@ -10,9 +11,7 @@ function login(props) {
         const email = document.getElementById('email');
         const senha = document.getElementById('password');
 
-        const request = await props.doLogin(email.value, senha.value);
-        
-        document.cookie = "sessionId=" + request.data.sid + "; path=/";
+        await props.doLogin(email.value, senha.value);
     }
 
     return (
