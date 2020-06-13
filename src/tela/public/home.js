@@ -1,6 +1,8 @@
 import React from 'react';
 
-function home() {
+import {connect} from 'react-redux';
+
+function Home(props) {
 
     return (
         <>
@@ -10,4 +12,12 @@ function home() {
     );
 }
 
-export default home;
+function mapStateToProps(state){
+    return{}
+}
+
+function mapDispatchToProps(dispatch){
+    return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

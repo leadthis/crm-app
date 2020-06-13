@@ -15,16 +15,12 @@ function App(props){
     
     if(props.login){
         return(
-            <>
-                <Private />
-            </>
+            <Private />
         );
     }
 
     return(
-        <>
-            <Public />
-        </>
+        <Public />
     );
 
 }

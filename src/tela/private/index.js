@@ -6,7 +6,7 @@ import {
     BrowserRouter,
     Switch,
     Route
-} from 'react-dom';
+} from 'react-router-dom';
 
 import Home from './home';
 
